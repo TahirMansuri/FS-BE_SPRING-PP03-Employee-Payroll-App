@@ -3,43 +3,67 @@ package com.infogalaxy.springemployeepayrollapp.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-
+//Employee Entity and Model class for Handling all employee data
 @Getter
 @Setter
 @Entity
 @Table(name="Employee")
 public class EmployeeEntity {
     @Id
-    int id;
+    //Setting up id as PRIMARY KEY AND AUTO INCREMENTED
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    long id;
     String name;
-    String image;
+    String profile;
     String gender;
     String dept;
     String salary;
-    String date;
+    String day;
+    String month;
+    String year;
     String notes;
 
-    public EmployeeEntity(String name, String image, String gender, String dept, String salary, String date, String notes) {
+    public EmployeeEntity(long id, String name, String profile, String gender, String dept, String salary, String day, String month, String year, String notes) {
+        this.id = id;
         this.name = name;
-        this.image = image;
+        this.profile = profile;
         this.gender = gender;
         this.dept = dept;
         this.salary = salary;
-        this.date = date;
+        this.day = day;
+        this.month = month;
+        this.year = year;
         this.notes = notes;
     }
 
     public EmployeeEntity() {
+        this.id = 0;
         this.name = "";
-        this.image = "";
+        this.profile = "";
         this.gender = "";
         this.dept = "";
         this.salary = "";
-        this.date = "";
+        this.day = "";
+        this.month = "";
+        this.year = "";
         this.notes = "";
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", profile='" + profile + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dept='" + dept + '\'' +
+                ", salary='" + salary + '\'' +
+                ", day='" + day + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                ", notes='" + notes + '\'' +
+                '}';
     }
 }
