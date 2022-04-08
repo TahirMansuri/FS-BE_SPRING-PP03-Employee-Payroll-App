@@ -4,9 +4,11 @@ import com.infogalaxy.springemployeepayrollapp.entity.EmployeeEntity;
 import com.infogalaxy.springemployeepayrollapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EmployeeController {
@@ -35,4 +37,16 @@ public class EmployeeController {
         return employeeService.addEmployee(employeeEntity);
     }
 
+    @GetMapping({"/getemp"})
+    public ModelAndView getAllEmp() {
+        return employeeService.getAllEmp();
+    }
+
+
+    //POST Mapping for Employee Payroll Data to be stored in DB by Employee Service
+    @RequestMapping(value="/saveemp2", method= RequestMethod.POST)
+    public ModelAndView test2(EmployeeEntity employeeEntity){
+        employeeService.addEmployee2(employeeEntity);
+        return employeeService.getAllEmp();
+    }
 }
